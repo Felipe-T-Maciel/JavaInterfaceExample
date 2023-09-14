@@ -26,7 +26,7 @@ public class Main {
                     menuGalaxiaICRUD();
                 }
                 case 2 -> {
-                    menuHardwareCRUD();
+                    menuComponenteCRUD();
                 }
                 case 3 -> {
                     System.out.println("Desligando os componentes da nave...");
@@ -116,17 +116,10 @@ public class Main {
         return null;
     }
 
-    private static void menuHardwareCRUD() {
+    private static void menuComponenteCRUD() {
         int opcao = 0;
         do{
-            System.out.println("""
-                    
-                    [1] Adicionar um novo Hardware                  
-                    [2] Remover um Hardware
-                    [3] Atualizar um Hardware
-                    [4] Listar um Hardware especifico
-                    [5] Listar todos os Hardwares da nave""");
-            System.out.print("> ");
+            System.out.println(Componente.menuOpcaoComponente());
             opcao = sc.nextInt();
 
             switch (opcao){
@@ -134,75 +127,70 @@ public class Main {
                     crudComponente.create(cadastroComponente());
                 }
                 case 2 -> {
-                    System.out.print("O id do hardware que deseja remover: ");
+                    System.out.print("O id do componente que deseja remover: ");
                     int id = sc.nextInt();
                     crudComponente.delete(id);
                 }
                 case 3 -> {
-                    System.out.print("O id do hardware que deseja atualizar: ");
+                    System.out.print("O id do componente que deseja atualizar: ");
                     int id = sc.nextInt();
                     crudComponente.update(id, cadastroComponente());
                 }
                 case 4 -> {
-                    System.out.print("O id do hardware que deseja ver: ");
+                    System.out.print("O id do componente que deseja ver: ");
                     int id = sc.nextInt();
-                    System.out.println(crudGalaxy.read(id));
+                    System.out.println(crudComponente.read(id));
                 }
                 case 5 -> {
-                    crudGalaxy.readAll();
+                    crudComponente.readAll();
                 }
             }
         }while (opcao>=1 && opcao<=5);
     }
 
-    private static Galaxia cadastroComponente() {
+    private static Componente cadastroComponente() {
         int opcao = 0;
         System.out.print(Componente.tipoComponente());
         opcao = sc.nextInt();
         System.out.print("" +
                 "Nome do Componente: ");
         String nome = sc.next();
-        System.out.print("""
+        System.out.println("""
                         
-                        A galaxia possui Materia Escura?
-                           [1] Sim     [0] Não""");
+                        O componente é original?
+                          [1] Sim     [0] Não""");
+        System.out.print("> ");
         int originalSimNao = sc.nextInt();
         boolean original = originalSimNao == 1;
         System.out.println(
                 "Onde o componente foi fabricado: " +
                 "Exemplo: No planeta Coruscant onde foi feita por um Rakata");
         System.out.print("> ");
-        String lugarFabricacao = sc.next();
+        String lugarFabricacao;
+        lugarFabricacao = sc.nextLine();
+        sc.nextLine();
 
         switch (opcao){
             case 1 -> {
-                System.out.print("Valor do eixo maior: ");
-                double eixoMaior = sc.nextDouble();
-                System.out.print("Valor do eixo menor: ");
-                double eixoMenor = sc.nextDouble();
-                return new GalaxiaElipsoide(nome,qtdEstrelas,eixoMaior,eixoMenor);
+                System.out.print("A quantos gruas o leme gira: ");
+                double grausMaxima = sc.nextDouble();
+                System.out.print("Quantos pilotos o cockpit suporta: ");
+                int qtdCapacidadePiloto = sc.nextInt();
+                return new Cockpit(nome, original, lugarFabricacao, grausMaxima, qtdCapacidadePiloto);
             }
             case 2 -> {
-                System.out.print("Valor do raio braço espiral: ");
-                double bracoEspiral = sc.nextDouble();
-                System.out.print("Quantidade de braços: ");
-                int qtdBraco = sc.nextInt();
-                return new GalaxiaElipsoide(nome,qtdEstrelas,bracoEspiral,qtdBraco);
+                System.out.print("Qual a capacidade de litros para o combustivel: ");
+                double capacidadeL = sc.nextDouble();
+                System.out.print("Qual a velocidade de propulsão: ");
+                double vlPropulsao = sc.nextDouble();
+                return new Foguete(nome, original, lugarFabricacao, capacidadeL, vlPropulsao);
             }
             case 3 -> {
-                System.out.print("""
-                        
-                        A galaxia possui um nucleo?
-                           [1] Sim     [0] Não""");
-                int possuiNucleoSimNao = sc.nextInt();
-                boolean possuiNucleo = possuiNucleoSimNao == 1;
-                System.out.print("""
-                        
-                        A galaxia possui Materia Escura?
-                           [1] Sim     [0] Não""");
-                int possuimateriaEscuraSimNao = sc.nextInt();
-                boolean possuimateriaEscura = possuimateriaEscuraSimNao == 1;
-                return new GalaxiaIrregular(nome,qtdEstrelas,possuiNucleo,possuimateriaEscura);
+                System.out.print("A quantos gruas o leme gira: ");
+                double grausMaxima = sc.nextDouble();
+                System.out.print("Qual o tamanho da asa em metros: ");
+                double tamanhoAsa = sc.nextDouble();
+                return new Asa(nome, original, lugarFabricacao, grausMaxima, tamanhoAsa);
             }
         }
         return null;
