@@ -1,6 +1,6 @@
 public class Asa extends Componente{
-    private double grauInclinaçãoMaxima;
-    private double tamanho;
+    private final double grauInclinaçãoMaxima;
+    private final double tamanho;
 
     public Asa(String nome, boolean original, String lugarFabricação, double grauInclinaçãoMaxima, double tamanho) {
         super(nome, original, lugarFabricação);

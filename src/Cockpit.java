@@ -1,6 +1,6 @@
 public class Cockpit extends Componente {
-    private double maximaGraus;
-    private int qtdLugaresParaPiloto;
+    private final double maximaGraus;
+    private final int qtdLugaresParaPiloto;
 
     public Cockpit(String nome, boolean original, String lugarFabricação, double maximaGraus, int qtdLugaresParaPiloto) {
         super(nome, original, lugarFabricação);

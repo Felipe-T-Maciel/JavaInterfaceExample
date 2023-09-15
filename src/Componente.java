@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class Componente {
-    private String nome;
-    private boolean original;
-    private String lugarFabricação;
+    private final String nome;
+    private final boolean original;
+    private final String lugarFabricação;
 
     public Componente(String nome, boolean original, String lugarFabricação) {
         this.nome = nome;
@@ -18,7 +18,7 @@ public class Componente {
                 [1] Foguete
                 [2] Cockpit
                 [3] Asa
-                > """;
+                >\t""";
     }
 
     public static String menuOpcaoComponente(){
@@ -29,7 +29,7 @@ public class Componente {
                     [3] Atualizar um Componente
                     [4] Listar um Componente especifico
                     [5] Listar todos os Componente da nave
-                    > """;
+                    >\t""";
     }
 
     @Override

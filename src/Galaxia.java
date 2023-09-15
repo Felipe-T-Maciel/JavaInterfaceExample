@@ -1,6 +1,6 @@
 public class Galaxia {
-    private String nome;
-    private int numeroDeEstrelas;
+    private final String nome;
+    private final int numeroDeEstrelas;
 
     public Galaxia(String nome, int numeroDeEstrelas) {
         this.nome = nome;
@@ -14,7 +14,7 @@ public class Galaxia {
                 [1] Galaxia Elipsoide
                 [2] Galaxia Espiral
                 [3] Galaxia Irregular
-                > """;
+                >\t""";
     }
 
     public static String menuOpcaoGalaxia(){
@@ -25,7 +25,7 @@ public class Galaxia {
                     [3] Atualizar uma Galaxia
                     [4] Ver uma galaxia especifica
                     [5] Ver todas as Galaxias
-                    > """;
+                    >\t""";
     }
 
     public String getNome() {
